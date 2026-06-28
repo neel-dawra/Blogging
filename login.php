@@ -1,12 +1,12 @@
 <?php
 session_start();
-
+ $con = mysqli_connect("localhost","root","","blogging");
 if(isset($_POST['Login']))
 {
-    $email = mysqli_real_escape_string($_POST['email']);
-    $password = mysqli_real_escape_string($_POST['password']);
+    $email = mysqli_real_escape_string($con,$_POST['email']);
+    $password = mysqli_real_escape_string($con,$_POST['password']);
     $pass = md5($password);
-    $con = mysqli_connect("localhost","root","","blogging");
+   
     $q = mysqli_query($con,"SELECT * FROM user WHERE email='$email' AND password='$pass'");
     
     if(mysqli_num_rows($q) > 0)
