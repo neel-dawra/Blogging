@@ -5,11 +5,13 @@ if(isset($_POST['Login']))
 {
     $email = mysqli_real_escape_string($_POST['email']);
     $password = mysqli_real_escape_string($_POST['password']);
-
+    $pass = md5($password);
     $con = mysqli_connect("localhost","root","","blogging");
-
     $q = mysqli_query($con,"SELECT * FROM user WHERE email='$email' AND password='$password'");
-
+    if($pass== $row['password'] )
+    {
+    $q = mysqli_query($con,"SELECT * FROM user WHERE email='$email' AND password='$password'");
+    
     if(mysqli_num_rows($q) > 0)
     {
         $row = mysqli_fetch_assoc($q);
@@ -27,6 +29,13 @@ if(isset($_POST['Login']))
     {
         echo "<script>
                 alert('Invalid Email or Password');
+              </script>";
+    }
+    }
+    else
+    {
+        echo "<script>
+                alert('Invalid Password');
               </script>";
     }
 }
