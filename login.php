@@ -7,10 +7,7 @@ if(isset($_POST['Login']))
     $password = mysqli_real_escape_string($_POST['password']);
     $pass = md5($password);
     $con = mysqli_connect("localhost","root","","blogging");
-    $q = mysqli_query($con,"SELECT * FROM user WHERE email='$email' AND password='$password'");
-    if($pass== $row['password'] )
-    {
-    $q = mysqli_query($con,"SELECT * FROM user WHERE email='$email' AND password='$password'");
+    $q = mysqli_query($con,"SELECT * FROM user WHERE email='$email' AND password='$pass'");
     
     if(mysqli_num_rows($q) > 0)
     {
