@@ -7,8 +7,9 @@ if(isset($_POST['Register']))
 
     $nm   = $_POST['name'];
     $cont = $_POST['contact'];
-    $em   = $_POST['email'];
-    $pass = $_POST['password'];
+    $em   = mysqli_real_escape_string($con, $_POST['email']);
+    $pass = mysqli_real_escape_string($con, $_POST['password']);
+    $pass = md5($pass);
     $bio  = $_POST['bio'];
     $date = $_POST['date'];
 
