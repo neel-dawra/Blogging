@@ -3,8 +3,8 @@ session_start();
 
 if(isset($_POST['Login']))
 {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = mysqli_real_escape_string($_POST['email']);
+    $password = mysqli_real_escape_string($_POST['password']);
 
     $con = mysqli_connect("localhost","root","","blogging");
 
